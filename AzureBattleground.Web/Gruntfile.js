@@ -23,7 +23,9 @@ module.exports = function (grunt) {
               'node_modules/react/umd/react.production.min.js',
               'node_modules/react-dom/umd/react-dom.production.min.js',
               'node_modules/semantic-ui-react/dist/umd/semantic-ui-react.min.js',
-              'node_modules/axios/dist/axios.min.js'
+              'node_modules/axios/dist/axios.min.js',
+              'node_modules/react-router/umd/react-router.min.js',
+              'node_modules/react-router-dom/umd/react-router-dom.min.js'
             ],
             dest: 'dist/',
             flatten: false
@@ -35,14 +37,14 @@ module.exports = function (grunt) {
           src: [],
           dest: 'dist/vendor.js',
           options: {
-            require: ['react', 'react-dom', 'semantic-ui-react', 'axios', 'moment']
+            require: ['react', 'react-dom', 'semantic-ui-react', 'axios', 'moment', 'react-router', 'react-router-dom']
           }
         },
         client: {
           src: ['build/*.js'],
           dest: 'dist/app.js',
           options: {
-            external: ['react', 'react-dom', 'semantic-ui-react', 'axios', 'moment'],
+            external: ['react', 'react-dom', 'semantic-ui-react', 'axios', 'moment', 'react-router', 'react-router-dom'],
           }
         }
       },
