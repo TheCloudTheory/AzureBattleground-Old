@@ -49,7 +49,7 @@ module.exports = function (grunt) {
       connect: {
         server: {
           options: {
-            port: 9001,
+            port: 9002,
             protocol: 'https'
           }
         }
@@ -85,11 +85,11 @@ module.exports = function (grunt) {
       },
       env: {
         local: {
-          REDIRECT_URI: 'https://localhost:9001',
+          REDIRECT_URI: 'https://localhost:9002',
           API_URL: 'https://localhost:5001/api'
         },
         debug: {
-          REDIRECT_URI: 'https://localhost:9001',
+          REDIRECT_URI: 'https://localhost:9002',
           API_URL: 'https://127.0.0.1:65113/api'
         },
         dev: {
