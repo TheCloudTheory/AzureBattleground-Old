@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Menu, Container, Dropdown, Icon } from 'semantic-ui-react';
 import { BrowserRouter as Router, Link } from "react-router-dom";
+import Footer from './footer';
 
 export default class App {
     init() {
@@ -47,6 +48,7 @@ export default class App {
                         </Dropdown>
                     </Container>
                 </Menu>
+                <Footer />
             </Router>,
             document.getElementById('app')
         );
