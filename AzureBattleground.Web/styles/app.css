@@ -61,3 +61,7 @@
 .home-mainSegment .ui.header {
     color: #fff;
 }
+
+.mainMenu-exercisesMenu .item a {
+    color: rgba(0,0,0,.87) !important;
+} 

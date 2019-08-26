@@ -18,7 +18,7 @@ export default class MainMenu extends React.Component {
                         <Dropdown.Item>
                             <i className='dropdown icon' />
                             <span className='text'>Compute</span>
-                            <Dropdown.Menu>
+                            <Dropdown.Menu className='mainMenu-exercisesMenu'>
                                 <Dropdown.Item><Link to='/exercises/compute/virtual-machines'>Virtual Machines</Link></Dropdown.Item>
                                 <Dropdown.Item><Link to='/exercises/compute/app-services'>App Services</Link></Dropdown.Item>
                                 <Dropdown.Item><Link to='/exercises/compute/service-fabric'>Service Fabric</Link></Dropdown.Item>
@@ -39,6 +39,20 @@ export default class MainMenu extends React.Component {
                                 <Dropdown.Item><Link to='/exercises/storage/mysql'>Azure Database for MySQL</Link></Dropdown.Item>
                                 <Dropdown.Item><Link to='/exercises/storage/postgresql'>Azure Database for PostgreSQL</Link></Dropdown.Item>
                             </Dropdown.Menu>
+                        </Dropdown.Item>
+                    </Dropdown.Menu>
+                </Dropdown>
+
+                <Dropdown item simple text='Battleground' className='mainMenu-exercisesMenu'>
+                    <Dropdown.Menu>
+                        <Dropdown.Item>
+                            <Link to='/exercises/battleground/tests'>Tests</Link>
+                        </Dropdown.Item>
+                        <Dropdown.Item>
+                            <Link to='/exercises/battleground/hall-of-fame'>Hall of Fame</Link>
+                        </Dropdown.Item>
+                        <Dropdown.Item>
+                            <Link to='/exercises/battleground/ranking'>Ranking</Link>
                         </Dropdown.Item>
                     </Dropdown.Menu>
                 </Dropdown>
