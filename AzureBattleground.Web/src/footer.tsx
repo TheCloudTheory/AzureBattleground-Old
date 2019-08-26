@@ -3,13 +3,13 @@ import { Segment, Container, List, Divider, Grid, Header, Image } from "semantic
 
 export default class Footer extends React.Component {
     render() {
-        return <Segment inverted vertical style={{ margin: '5em 0em 0em', padding: '5em 0em' }}>
+        return <Segment inverted vertical style={{ padding: '5em 0em' }}>
             <Container textAlign='center'>
                 <Grid divided inverted stackable>
                     <Grid.Column width={3}>
                         <Header inverted as='h4' content='Basics' />
                         <List link inverted>
-                            <List.Item as='a'>Home</List.Item>
+                            <List.Item as='a' active>Home</List.Item>
                             <List.Item as='a'>About</List.Item>
                         </List>
                     </Grid.Column>
