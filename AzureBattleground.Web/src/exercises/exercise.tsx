@@ -35,13 +35,15 @@ export default class Exercise extends React.Component<{}, ExerciseType> {
                 <Breadcrumb.Divider />
                 <Breadcrumb.Section active>{this.state.metadata.name}</Breadcrumb.Section>
             </Breadcrumb>
-            <Header as='h2'>
-                <Header.Content>
-                    {this.state.metadata.name}
-                    <Header.Subheader>{this.state.metadata.description}</Header.Subheader>
-                </Header.Content>
-            </Header>
-            <Segment><ReactMarkdown source={this.state.exercise} /></Segment>
+            <Segment>
+                <Header as='h2'>
+                    <Header.Content>
+                        {this.state.metadata.name}
+                        <Header.Subheader>{this.state.metadata.description}</Header.Subheader>
+                    </Header.Content>
+                </Header>
+                <ReactMarkdown source={this.state.exercise} />
+            </Segment>
         </Container>;
     }
 }
