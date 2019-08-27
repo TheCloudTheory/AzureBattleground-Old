@@ -1,1 +1,0 @@
-src/exercises/compute/virtualMachines.tsx --sourcemap --removeComments --jsx react --rootDir src --esModuleInterop --target ES6 --module commonjs --outDir build/
