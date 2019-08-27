@@ -52,7 +52,13 @@ module.exports = function (grunt) {
         server: {
           options: {
             port: 9002,
-            protocol: 'https'
+            protocol: 'https',
+            open: true,
+            middleware: function (connect, options, middlewares) {
+              var modRewrite = require('connect-modrewrite');
+              middlewares.unshift(modRewrite(['!/api|\\.html|\\.js|\\.svg|\\.css|\\.png|/$ /index.html [L]',]));
+              return middlewares;
+          }
           }
         }
       },

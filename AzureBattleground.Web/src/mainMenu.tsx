@@ -10,7 +10,7 @@ export default class MainMenu extends React.Component {
                     <Icon inverted color='blue' name='terminal' size='large' />
                     <Link to='/'>Azure Battleground</Link>
                 </Menu.Item>
-                <Menu.Item as='a'><Link to='/home'>Home</Link></Menu.Item>
+                <Menu.Item as='a'><Link to='/'>Home</Link></Menu.Item>
                 <Menu.Item as='a'><Link to='/about'>About</Link></Menu.Item>
 
                 <Dropdown item simple text='Exercises'>
