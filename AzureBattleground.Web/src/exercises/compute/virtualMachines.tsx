@@ -4,6 +4,7 @@ import VirtualMachinesExercises from '../../../db/exercises/compute/virtualMachi
 import { IExercise } from "../interfaces/exercise";
 import { Link } from "react-router-dom";
 import Store from "../../store";
+import LevelLabel from "../../ui/levelLabel";
 
 export default class VirtualMachines extends React.Component<{}, VirtualMachinesState> {
     constructor(props) {
@@ -27,7 +28,7 @@ export default class VirtualMachines extends React.Component<{}, VirtualMachines
 
     private renderListElement(exercise: IExercise) {
         return <List.Item key={exercise.id.toString()}>
-            {this.getLevelLabel(exercise.level)}
+            <LevelLabel level={exercise.level} />
             <List.Content floated='right'>
                 <Button primary onClick={() => Store.setKey('exercise', exercise)}>
                     <Link to={'/exercises/compute/virtual-machines/' + this.getExerciseBeatifulIdentifier(exercise.name)} style={{ color: 'white' }}>Get started</Link>
@@ -38,35 +39,6 @@ export default class VirtualMachines extends React.Component<{}, VirtualMachines
                 {exercise.description}
             </List.Content>
         </List.Item>;
-    }
-
-    private getLevelLabel(level: Number) {
-        let label: LevelLabel = {
-            text: '',
-            color: 'grey'
-        };
-
-        switch (level) {
-            case 1:
-                label.text = 'Easy';
-                label.color = 'green';
-                break;
-            case 2:
-                label.text = 'Medium';
-                label.color = 'orange';
-                break;
-            case 3:
-                label.text = 'Hard';
-                label.color = 'red';
-                break;
-            default:
-                label.text = 'Not rated';
-                label.color = 'grey';
-        }
-
-        return <Label color={label.color} horizontal style={{ float: 'left' }}>
-            {label.text}
-        </Label>;
     }
 
     private getExerciseBeatifulIdentifier(name: string) {
@@ -92,9 +64,4 @@ export default class VirtualMachines extends React.Component<{}, VirtualMachines
 
 type VirtualMachinesState = {
     exercises: IExercise[]
-}
-
-type LevelLabel = {
-    text: string;
-    color: SemanticCOLORS
 }
