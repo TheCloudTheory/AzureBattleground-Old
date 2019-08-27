@@ -9,7 +9,7 @@ export default class Footer extends React.Component {
                     <Grid.Column width={3}>
                         <Header inverted as='h4' content='Basics' />
                         <List link inverted>
-                            <List.Item as='a' active>Home</List.Item>
+                            <List.Item as='a'>Home</List.Item>
                             <List.Item as='a'>About</List.Item>
                         </List>
                     </Grid.Column>

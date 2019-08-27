@@ -12,7 +12,7 @@ export default class MainMenu extends React.Component {
                         Azure Battleground
                     </Link>
                 </Menu.Item>
-                <Menu.Item><Link to='/home'>Home</Link></Menu.Item>
+                <Menu.Item><Link to='/'>Home</Link></Menu.Item>
                 <Menu.Item><Link to='/about'>About</Link></Menu.Item>
 
                 <Dropdown item simple text='Exercises'>
