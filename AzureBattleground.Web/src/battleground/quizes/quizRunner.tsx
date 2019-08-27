@@ -2,7 +2,7 @@ import React from "react";
 import Axios from "axios";
 import { IQuiz } from "../interfaces/quiz";
 import Store from "../../store";
-import { Container, Breadcrumb, Segment, Header, List, Divider } from "semantic-ui-react";
+import { Container, Breadcrumb, Segment, Header, List, Divider, Progress } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 
 export default class QuizRunner extends React.Component<{}, QuizState> {
@@ -15,12 +15,14 @@ export default class QuizRunner extends React.Component<{}, QuizState> {
             questionIndex: 0,
             correctAnswers: 0,
             wrongAnswers: 0,
-            showAnswers: false
+            showAnswers: false,
+            questionsTotal: 0
         };
 
-        Axios.get(`/db/quizes/data/${this.state.metadata.id}.json`).then(res => {
+        Axios.get<QuizData>(`/db/quizes/data/${this.state.metadata.id}.json`).then(res => {
             this.setState({
-                quiz: res.data
+                quiz: res.data,
+                questionsTotal: res.data.questions.length
             });
         });
 
@@ -42,6 +44,16 @@ export default class QuizRunner extends React.Component<{}, QuizState> {
             wrongAnswers: wrongAnswers,
             showAnswers: true
         });
+
+        if(this.state.questionIndex+1 == this.state.questionsTotal) {
+            return;
+        }
+
+        setTimeout(() => this.setState({
+            selectedAnswer: undefined,
+            showAnswers: false,
+            questionIndex: this.state.questionIndex+1
+        }), 3000);
     }
 
     private renderQuiz() {
@@ -102,6 +114,7 @@ export default class QuizRunner extends React.Component<{}, QuizState> {
                 <Divider />
                 <Header as='h4'>{typeof (this.state.quiz) !== 'undefined' && this.renderCurrentQuestion()}</Header>
                 {typeof (this.state.quiz) !== 'undefined' && this.renderQuiz()}
+                {typeof (this.state.quiz) !== 'undefined' && <Progress value={this.state.questionIndex+1} total={this.state.questionsTotal} progress='ratio' color='blue' />}
             </Segment>
         </Container>;
     }
@@ -114,7 +127,8 @@ type QuizState = {
     selectedAnswer?: QuizAnswer,
     correctAnswers: number,
     wrongAnswers: number,
-    showAnswers: boolean
+    showAnswers: boolean,
+    questionsTotal: number
 }
 
 type QuizData = {

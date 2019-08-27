@@ -26,6 +26,33 @@
                     "isCorrect": false
                 }
             ]
+        },
+        {
+            "id": 2,
+            "text": "The best cloud provider is...",
+            "kind": "single",
+            "answers": [
+                {
+                    "id": 1,
+                    "text": "Azure",
+                    "isCorrect": true
+                },
+                {
+                    "id": 2,
+                    "text": "AWS",
+                    "isCorrect": false
+                },
+                {
+                    "id": 3,
+                    "text": "Google",
+                    "isCorrect": false
+                },
+                {
+                    "id": 4,
+                    "text": "My own DC",
+                    "isCorrect": false
+                }
+            ]
         }
     ]
 }
