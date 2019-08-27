@@ -42,7 +42,7 @@ export default class Quizes extends React.Component<{}, QuizesState> {
     }
 
     render() {
-        return <Container style={{ padding: '3em 0' }}>
+        return <Container className='page-mainContainer'>
             <Header as='h2'>
                 <Icon name='desktop' />
                 <Header.Content>
