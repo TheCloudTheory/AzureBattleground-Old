@@ -8,7 +8,8 @@ const VirtualMachinesExercises = {
             "name": "Creating a Windows virtual machine in Azure",
             "description": "In this exercise you will learn basics of creating Windows virtual machines in Azure using CLI and Azure Resource Manager.",
             "estimatedTimeInMinutes": 60,
-            "tags": ["vm", "virtual", "machine", "arm", "cli", "azure", "resource", "manager"]
+            "tags": ["vm", "virtual", "machine", "arm", "cli", "azure", "resource", "manager"],
+            "path": "compute/virtualMachines/1.md"
         },
         {
             "id": 2,
@@ -18,7 +19,8 @@ const VirtualMachinesExercises = {
             "name": "Using RDP to access a Windows VM",
             "description": "Once you have your virtual machine created, you probably want to access it. This exercise will present you how to perform that operation with all possible gotchas.",
             "estimatedTimeInMinutes": 60,
-            "tags": ["vm", "virtual", "machine", "rdp", "windows"]
+            "tags": ["vm", "virtual", "machine", "rdp", "windows"],
+            "path": "compute/virtualMachines/2.md"
         },
         {
             "id": 3,
@@ -28,7 +30,8 @@ const VirtualMachinesExercises = {
             "name": "Using SSH to access a Linux VM",
             "description": "Linux VMs are a little bit different as they require SSH as a default access method. Here you will learn the differences and the proper configuration.",
             "estimatedTimeInMinutes": 60,
-            "tags": ["vm", "virtual", "machine", "ssh", "linux"]
+            "tags": ["vm", "virtual", "machine", "ssh", "linux"],
+            "path": "compute/virtualMachines/2.md"
         }
     ]
 }

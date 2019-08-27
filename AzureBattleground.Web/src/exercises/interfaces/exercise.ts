@@ -6,5 +6,6 @@ export interface IExercise {
     name: string,
     description: string,
     estimatedTimeInMinutes: number,
-    tags: string[]
+    tags: string[],
+    path: string
 }
