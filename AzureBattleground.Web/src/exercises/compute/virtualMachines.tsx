@@ -2,6 +2,8 @@ import React from "react";
 import { Container, Header, Icon, List, Button, Label, SemanticCOLORS } from "semantic-ui-react";
 import VirtualMachinesExercises from '../../../db/exercises/compute/virtualMachines';
 import { IExercise } from "../interfaces/exercise";
+import { Link } from "react-router-dom";
+import Store from "../../store";
 
 export default class VirtualMachines extends React.Component<{}, VirtualMachinesState> {
     constructor(props) {
@@ -27,7 +29,9 @@ export default class VirtualMachines extends React.Component<{}, VirtualMachines
         return <List.Item key={exercise.id.toString()}>
             {this.getLevelLabel(exercise.level)}
             <List.Content floated='right'>
-                <Button primary>Get started</Button>
+                <Button primary onClick={() => Store.setKey('exercise', exercise)}>
+                    <Link to={'/exercises/compute/virtual-machines/' + this.getExerciseBeatifulIdentifier(exercise.name)} style={{ color: 'white' }}>Get started</Link>
+                </Button>
             </List.Content>
             <List.Content>
                 <List.Header>{exercise.name}</List.Header>
@@ -63,6 +67,13 @@ export default class VirtualMachines extends React.Component<{}, VirtualMachines
         return <Label color={label.color} horizontal style={{ float: 'left' }}>
             {label.text}
         </Label>;
+    }
+
+    private getExerciseBeatifulIdentifier(name: string) {
+        name = name.toLocaleLowerCase();
+        name = name.replace(/ /g, '_');
+
+        return name;
     }
 
     render() {

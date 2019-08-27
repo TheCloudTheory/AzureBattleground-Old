@@ -6,6 +6,7 @@ import MainMenu from './mainMenu';
 import { Container } from 'semantic-ui-react';
 import Home from './home/home';
 import VirtualMachines from './exercises/compute/virtualMachines';
+import Exercise from './exercises/exercise';
 
 export default class App {
     init() {
@@ -15,6 +16,7 @@ export default class App {
                 <Container fluid className='main-container'>
                     <Route path="/" exact component={Home} />
                     <Route path="/exercises/compute/virtual-machines" exact component={VirtualMachines} />
+                    <Route path="/exercises/compute/virtual-machines/:id" component={Exercise} />
                 </Container>
                 <Footer />
             </Router>,

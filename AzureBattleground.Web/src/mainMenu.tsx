@@ -6,12 +6,12 @@ export default class MainMenu extends React.Component {
     render() {
         return <Menu fixed='top' inverted>
             <Container>
-                <Menu.Item as='a' header>
+                <Menu.Item as='a' header href='/'>
                     <Icon inverted color='blue' name='terminal' size='large' />
-                    <Link to='/'>Azure Battleground</Link>
+                    Azure Battleground
                 </Menu.Item>
-                <Menu.Item as='a'><Link to='/'>Home</Link></Menu.Item>
-                <Menu.Item as='a'><Link to='/about'>About</Link></Menu.Item>
+                <Menu.Item as='a' href='/'>Home</Menu.Item>
+                <Menu.Item as='a' href='/about'>About</Menu.Item>
 
                 <Dropdown item simple text='Exercises'>
                     <Dropdown.Menu>

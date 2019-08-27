@@ -25,7 +25,8 @@ module.exports = function (grunt) {
               'node_modules/semantic-ui-react/dist/umd/semantic-ui-react.min.js',
               'node_modules/axios/dist/axios.min.js',
               'node_modules/react-router/umd/react-router.min.js',
-              'node_modules/react-router-dom/umd/react-router-dom.min.js'
+              'node_modules/react-router-dom/umd/react-router-dom.min.js',
+              'node_modules/react-markdown/umd/react-markdown.js'
             ],
             dest: 'dist/',
             flatten: false
@@ -37,14 +38,14 @@ module.exports = function (grunt) {
           src: [],
           dest: 'dist/vendor.js',
           options: {
-            require: ['react', 'react-dom', 'semantic-ui-react', 'axios', 'moment', 'react-router', 'react-router-dom']
+            require: ['react', 'react-dom', 'semantic-ui-react', 'axios', 'moment', 'react-router', 'react-router-dom', 'react-markdown']
           }
         },
         client: {
           src: ['build/*.js'],
           dest: 'dist/app.js',
           options: {
-            external: ['react', 'react-dom', 'semantic-ui-react', 'axios', 'moment', 'react-router', 'react-router-dom'],
+            external: ['react', 'react-dom', 'semantic-ui-react', 'axios', 'moment', 'react-router', 'react-router-dom', 'react-markdown'],
           }
         }
       },
@@ -56,7 +57,7 @@ module.exports = function (grunt) {
             open: true,
             middleware: function (connect, options, middlewares) {
               var modRewrite = require('connect-modrewrite');
-              middlewares.unshift(modRewrite(['!/api|\\.html|\\.js|\\.svg|\\.css|\\.png|/$ /index.html [L]',]));
+              middlewares.unshift(modRewrite(['!/api|\\.html|\\.md|\\.js|\\.svg|\\.css|\\.png|/$ /index.html [L]',]));
               return middlewares;
           }
           }
