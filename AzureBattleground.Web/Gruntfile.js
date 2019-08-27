@@ -57,7 +57,7 @@ module.exports = function (grunt) {
             open: true,
             middleware: function (connect, options, middlewares) {
               var modRewrite = require('connect-modrewrite');
-              middlewares.unshift(modRewrite(['!/api|\\.html|\\.md|\\.js|\\.svg|\\.css|\\.png|/$ /index.html [L]',]));
+              middlewares.unshift(modRewrite(['!/api|\\.html|\\.json|\\.md|\\.js|\\.svg|\\.css|\\.png|/$ /index.html [L]',]));
               return middlewares;
           }
           }

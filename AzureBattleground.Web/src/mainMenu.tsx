@@ -48,13 +48,13 @@ export default class MainMenu extends React.Component {
                 <Dropdown item simple text='Battleground' className='mainMenu-exercisesMenu'>
                     <Dropdown.Menu>
                         <Dropdown.Item>
-                            <Link to='/exercises/battleground/quizes'>Quizes</Link>
+                            <Link to='/battleground/quizes'>Quizes</Link>
                         </Dropdown.Item>
                         <Dropdown.Item>
-                            <Link to='/exercises/battleground/hall-of-fame'>Hall of Fame</Link>
+                            <Link to='/battleground/hall-of-fame'>Hall of Fame</Link>
                         </Dropdown.Item>
                         <Dropdown.Item>
-                            <Link to='/exercises/battleground/ranking'>Ranking</Link>
+                            <Link to='/battleground/ranking'>Ranking</Link>
                         </Dropdown.Item>
                     </Dropdown.Menu>
                 </Dropdown>

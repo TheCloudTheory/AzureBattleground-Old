@@ -23,7 +23,7 @@ export default class Exercise extends React.Component<{}, ExerciseType> {
     }
 
     render() {
-        return <Container style={{ padding: '3em 0' }}>
+        return <Container className='page-mainContainer'>
             <Breadcrumb>
                 <Breadcrumb.Section><Link to='/'>Home</Link></Breadcrumb.Section>
                 <Breadcrumb.Divider />

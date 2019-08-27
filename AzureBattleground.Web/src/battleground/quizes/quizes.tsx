@@ -31,7 +31,7 @@ export default class Quizes extends React.Component<{}, QuizesState> {
             <LevelLabel level={quiz.level} />
             <List.Content floated='right'>
                 <Button primary onClick={() => Store.setKey('quiz', quiz)}>
-                    <Link to={'/'} style={{ color: 'white' }}>Get started</Link>
+                    <Link to={'/battleground/quizes/' + this.getQuizBeatifulIdentifier(quiz.title)} style={{ color: 'white' }}>Start quiz</Link>
                 </Button>
             </List.Content>
             <List.Content>
@@ -39,6 +39,13 @@ export default class Quizes extends React.Component<{}, QuizesState> {
                 {quiz.description}
             </List.Content>
         </List.Item>;
+    }
+
+    private getQuizBeatifulIdentifier(name: string) {
+        name = name.toLocaleLowerCase();
+        name = name.replace(/ /g, '_');
+
+        return name;
     }
 
     render() {

@@ -9,6 +9,7 @@ import VirtualMachines from './exercises/compute/virtualMachines';
 import Exercise from './exercises/exercise';
 import Quizes from './battleground/quizes/quizes';
 import NotFound from './notFound';
+import QuizRunner from './battleground/quizes/quizRunner';
 
 export default class App {
     init() {
@@ -20,7 +21,8 @@ export default class App {
                         <Route path="/" exact component={Home} />
                         <Route path="/exercises/compute/virtual-machines" exact component={VirtualMachines} />
                         <Route path="/exercises/compute/virtual-machines/:id" component={Exercise} />
-                        <Route path="/exercises/battleground/quizes" exact component={Quizes} />
+                        <Route path="/battleground/quizes" exact component={Quizes} />
+                        <Route path="/battleground/quizes/:id" component={QuizRunner} />
                         <Route component={NotFound} />
                     </Switch>
                 </Container>

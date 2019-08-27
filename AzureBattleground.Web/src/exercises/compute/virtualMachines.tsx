@@ -49,7 +49,7 @@ export default class VirtualMachines extends React.Component<{}, VirtualMachines
     }
 
     render() {
-        return <Container style={{ padding: '3em 0' }}>
+        return <Container className='page-mainContainer'>
             <Header as='h2'>
                 <Icon name='desktop' />
                 <Header.Content>
