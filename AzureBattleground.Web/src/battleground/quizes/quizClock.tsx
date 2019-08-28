@@ -38,6 +38,8 @@ export default class QuizClock extends React.Component<QuizClockProps, QuizClock
     componentDidMount() {
         let intervalId = setInterval(() => {
             if(this.state.currentTime === this.props.questionTime) {
+                this.props.clockCallback();
+                clearInterval(this.state.intervalId);
                 return;
             }
 
@@ -73,6 +75,7 @@ export default class QuizClock extends React.Component<QuizClockProps, QuizClock
 type QuizClockProps = {
     questionTime: number,
     shouldStop: boolean,
+    clockCallback: Function
 }
 
 type QuizClockState = {

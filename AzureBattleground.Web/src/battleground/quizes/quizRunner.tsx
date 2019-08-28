@@ -31,6 +31,7 @@ export default class QuizRunner extends React.Component<{}, QuizState> {
         });
 
         this.handleAnswerClick = this.handleAnswerClick.bind(this);
+        this.clockEndedHandler = this.clockEndedHandler.bind(this);
     }
 
     private handleAnswerClick(answer: QuizAnswer) {
@@ -84,7 +85,7 @@ export default class QuizRunner extends React.Component<{}, QuizState> {
     }
 
     private renderIcon(answer: QuizAnswer) {
-        if (typeof (this.state.selectedAnswer) === 'undefined' || this.state.showAnswers === false) {
+        if (this.state.showAnswers === false) {
             return;
         }
 
@@ -97,6 +98,19 @@ export default class QuizRunner extends React.Component<{}, QuizState> {
 
     private renderCurrentQuestion() {
         return `Question ${this.state.questionIndex + 1}: ${this.state.quiz.questions[this.state.questionIndex].text}`;
+    }
+
+    private clockEndedHandler() {
+        this.setState({
+            showAnswers: true
+        });
+
+        setTimeout(() => this.setState({
+            selectedAnswer: undefined,
+            showAnswers: false,
+            questionIndex: this.state.questionIndex + 1,
+            shouldStopClock: false
+        }), 3000);
     }
 
     render() {
@@ -123,7 +137,8 @@ export default class QuizRunner extends React.Component<{}, QuizState> {
                 {typeof (this.state.quiz) !== 'undefined' &&
                     <QuizClock key={this.state.questionIndex}
                         questionTime={this.state.quiz.questions[this.state.questionIndex].timeInSeconds}
-                        shouldStop={this.state.shouldStopClock} />}
+                        shouldStop={this.state.shouldStopClock} 
+                        clockCallback={this.clockEndedHandler}/>}
                 {this.state.isLoading == true && <Dimmer active>
                     <Loader indeterminate>Loading quiz...</Loader>
                 </Dimmer>}
