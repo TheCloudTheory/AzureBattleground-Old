@@ -4,6 +4,7 @@ import { IQuiz } from "../interfaces/quiz";
 import Store from "../../store";
 import { Container, Breadcrumb, Segment, Header, List, Divider, Progress, Loader, Dimmer } from "semantic-ui-react";
 import { Link } from "react-router-dom";
+import QuizClock from "./quizClock";
 
 export default class QuizRunner extends React.Component<{}, QuizState> {
     constructor(props) {
@@ -17,7 +18,8 @@ export default class QuizRunner extends React.Component<{}, QuizState> {
             wrongAnswers: 0,
             showAnswers: false,
             questionsTotal: 0,
-            isLoading: true
+            isLoading: true,
+            shouldStopClock: false
         };
 
         Axios.get<QuizData>(`/db/quizes/data/${this.state.metadata.id}.json`).then(res => {
@@ -44,7 +46,8 @@ export default class QuizRunner extends React.Component<{}, QuizState> {
             selectedAnswer: answer,
             correctAnswers: correctAnswers,
             wrongAnswers: wrongAnswers,
-            showAnswers: true
+            showAnswers: true,
+            shouldStopClock: true
         });
 
         if (this.state.questionIndex + 1 == this.state.questionsTotal) {
@@ -54,7 +57,8 @@ export default class QuizRunner extends React.Component<{}, QuizState> {
         setTimeout(() => this.setState({
             selectedAnswer: undefined,
             showAnswers: false,
-            questionIndex: this.state.questionIndex + 1
+            questionIndex: this.state.questionIndex + 1,
+            shouldStopClock: false
         }), 3000);
     }
 
@@ -116,7 +120,10 @@ export default class QuizRunner extends React.Component<{}, QuizState> {
                 <Divider />
                 <Header as='h4'>{typeof (this.state.quiz) !== 'undefined' && this.renderCurrentQuestion()}</Header>
                 {typeof (this.state.quiz) !== 'undefined' && this.renderQuiz()}
-                {typeof (this.state.quiz) !== 'undefined' && <Progress value={this.state.questionIndex + 1} total={this.state.questionsTotal} progress='ratio' color='blue' />}
+                {typeof (this.state.quiz) !== 'undefined' &&
+                    <QuizClock key={this.state.questionIndex}
+                        questionTime={this.state.quiz.questions[this.state.questionIndex].timeInSeconds}
+                        shouldStop={this.state.shouldStopClock} />}
                 {this.state.isLoading == true && <Dimmer active>
                     <Loader indeterminate>Loading quiz...</Loader>
                 </Dimmer>}
@@ -134,7 +141,8 @@ type QuizState = {
     wrongAnswers: number,
     showAnswers: boolean,
     questionsTotal: number,
-    isLoading: boolean
+    isLoading: boolean,
+    shouldStopClock: boolean
 }
 
 type QuizData = {
