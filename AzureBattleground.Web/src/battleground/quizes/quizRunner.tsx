@@ -2,7 +2,7 @@ import React from "react";
 import Axios from "axios";
 import { IQuiz } from "../interfaces/quiz";
 import Store from "../../store";
-import { Container, Breadcrumb, Segment, Header, List, Divider, Progress, Loader, Dimmer } from "semantic-ui-react";
+import { Container, Breadcrumb, Segment, Header, List, Divider, Progress, Loader, Dimmer, Icon, Statistic } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import QuizClock from "./quizClock";
 
@@ -19,7 +19,8 @@ export default class QuizRunner extends React.Component<{}, QuizState> {
             showAnswers: false,
             questionsTotal: 0,
             isLoading: true,
-            shouldStopClock: false
+            shouldStopClock: false,
+            quizFinished: false
         };
 
         Axios.get<QuizData>(`/db/quizes/data/${this.state.metadata.id}.json`).then(res => {
@@ -100,7 +101,11 @@ export default class QuizRunner extends React.Component<{}, QuizState> {
     }
 
     private proceedToNextQuestion() {
-        if (this.state.questionIndex + 1 == this.state.questionsTotal) {
+        if (this.state.questionIndex + 1 === this.state.questionsTotal) {
+            this.setState({
+                quizFinished: true
+            });
+
             return;
         }
 
@@ -131,16 +136,33 @@ export default class QuizRunner extends React.Component<{}, QuizState> {
                     </Header.Content>
                 </Header>
                 <Divider />
-                <Header as='h4'>{typeof (this.state.quiz) !== 'undefined' && this.renderCurrentQuestion()}</Header>
-                {typeof (this.state.quiz) !== 'undefined' && this.renderQuiz()}
-                {typeof (this.state.quiz) !== 'undefined' &&
+                <Header as='h4'>{typeof (this.state.quiz) !== 'undefined' && this.state.quizFinished == false && this.renderCurrentQuestion()}</Header>
+                {typeof (this.state.quiz) !== 'undefined' && this.state.quizFinished == false && this.renderQuiz()}
+                {typeof (this.state.quiz) !== 'undefined' && this.state.quizFinished == false &&
                     <QuizClock key={this.state.questionIndex}
                         questionTime={this.state.quiz.questions[this.state.questionIndex].timeInSeconds}
-                        shouldStop={this.state.shouldStopClock} 
-                        clockCallback={this.clockEndedHandler}/>}
+                        shouldStop={this.state.shouldStopClock}
+                        clockCallback={this.clockEndedHandler} />}
                 {this.state.isLoading == true && <Dimmer active>
                     <Loader indeterminate>Loading quiz...</Loader>
                 </Dimmer>}
+                {this.state.quizFinished && <div><Header as='h2' icon textAlign='center'>
+                    <Icon name='check' circular />
+                    <Header.Content>Congratulations!</Header.Content>
+                    <Header.Subheader>
+                        You have finished a quiz. Here are your results:
+                    </Header.Subheader>
+                </Header>
+                    <Statistic.Group widths='two'>
+                        <Statistic color='green'>
+                            <Statistic.Value>{this.state.correctAnswers}</Statistic.Value>
+                            <Statistic.Label>correct answers</Statistic.Label>
+                        </Statistic>
+                        <Statistic color='red'>
+                            <Statistic.Value>{this.state.wrongAnswers}</Statistic.Value>
+                            <Statistic.Label>wrong answers</Statistic.Label>
+                        </Statistic>
+                    </Statistic.Group></div>}
             </Segment>
         </Container>;
     }
@@ -156,7 +178,8 @@ type QuizState = {
     showAnswers: boolean,
     questionsTotal: number,
     isLoading: boolean,
-    shouldStopClock: boolean
+    shouldStopClock: boolean,
+    quizFinished: boolean
 }
 
 type QuizData = {
