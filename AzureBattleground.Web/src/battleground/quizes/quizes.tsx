@@ -51,7 +51,7 @@ export default class Quizes extends React.Component<{}, QuizesState> {
     render() {
         return <Container className='page-mainContainer'>
             <Header as='h2'>
-                <Icon name='desktop' />
+                <Icon name='question circle' />
                 <Header.Content>
                     Quizes
                 <Header.Subheader>Here you can find the list of all available quizes with different levels of difficulty.</Header.Subheader>

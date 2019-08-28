@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Header, Icon, List, Button, Label, SemanticCOLORS } from "semantic-ui-react";
+import { Container, Header, Icon, List, Button, Label, SemanticCOLORS, Item } from "semantic-ui-react";
 import VirtualMachinesExercises from '../../../db/exercises/compute/virtualMachines';
 import { IExercise } from "../interfaces/exercise";
 import { Link } from "react-router-dom";
@@ -21,24 +21,28 @@ export default class VirtualMachines extends React.Component<{}, VirtualMachines
             items.push(this.renderListElement(value));
         });
 
-        return <List divided verticalAlign='middle'>
+        return <Item.Group divided>
             {items}
-        </List>;
+        </Item.Group>;
     }
 
     private renderListElement(exercise: IExercise) {
-        return <List.Item key={exercise.id.toString()}>
+        return <Item key={exercise.id.toString()}>
             <LevelLabel level={exercise.level} />
-            <List.Content floated='right'>
-                <Button primary onClick={() => Store.setKey('exercise', exercise)}>
-                    <Link to={'/exercises/compute/virtual-machines/' + this.getExerciseBeatifulIdentifier(exercise.name)} style={{ color: 'white' }}>Get started</Link>
-                </Button>
-            </List.Content>
-            <List.Content>
-                <List.Header>{exercise.name}</List.Header>
-                {exercise.description}
-            </List.Content>
-        </List.Item>;
+            <Item.Content>
+                <Item.Header>{exercise.name}</Item.Header>
+                <Item.Meta>
+                    <span>Time needed - approx. {exercise.estimatedTimeInMinutes} minutes</span>
+                </Item.Meta>
+                <Item.Description>{exercise.description}</Item.Description>
+                <Item.Extra>
+                    <Button primary floated='right' onClick={() => Store.setKey('exercise', exercise)}>
+                        <Link to={'/exercises/compute/virtual-machines/' + this.getExerciseBeatifulIdentifier(exercise.name)} style={{ color: 'white' }}>Get started</Link>
+                    </Button>
+                    {this.renderLabels(exercise.tags)}
+                </Item.Extra>
+            </Item.Content>
+        </Item>;
     }
 
     private getExerciseBeatifulIdentifier(name: string) {
@@ -46,6 +50,15 @@ export default class VirtualMachines extends React.Component<{}, VirtualMachines
         name = name.replace(/ /g, '_');
 
         return name;
+    }
+
+    private renderLabels(tags: string[]) {
+        let labels = [];
+        tags.forEach((value, index) => {
+            labels.push(<Label key={index}>{value}</Label>)
+        });
+
+        return labels;
     }
 
     render() {
