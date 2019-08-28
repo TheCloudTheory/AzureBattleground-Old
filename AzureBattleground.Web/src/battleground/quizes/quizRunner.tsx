@@ -2,7 +2,7 @@ import React from "react";
 import Axios from "axios";
 import { IQuiz } from "../interfaces/quiz";
 import Store from "../../store";
-import { Container, Breadcrumb, Segment, Header, List, Divider, Progress } from "semantic-ui-react";
+import { Container, Breadcrumb, Segment, Header, List, Divider, Progress, Loader, Dimmer } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 
 export default class QuizRunner extends React.Component<{}, QuizState> {
@@ -16,13 +16,15 @@ export default class QuizRunner extends React.Component<{}, QuizState> {
             correctAnswers: 0,
             wrongAnswers: 0,
             showAnswers: false,
-            questionsTotal: 0
+            questionsTotal: 0,
+            isLoading: true
         };
 
         Axios.get<QuizData>(`/db/quizes/data/${this.state.metadata.id}.json`).then(res => {
             this.setState({
                 quiz: res.data,
-                questionsTotal: res.data.questions.length
+                questionsTotal: res.data.questions.length,
+                isLoading: false
             });
         });
 
@@ -45,14 +47,14 @@ export default class QuizRunner extends React.Component<{}, QuizState> {
             showAnswers: true
         });
 
-        if(this.state.questionIndex+1 == this.state.questionsTotal) {
+        if (this.state.questionIndex + 1 == this.state.questionsTotal) {
             return;
         }
 
         setTimeout(() => this.setState({
             selectedAnswer: undefined,
             showAnswers: false,
-            questionIndex: this.state.questionIndex+1
+            questionIndex: this.state.questionIndex + 1
         }), 3000);
     }
 
@@ -78,11 +80,11 @@ export default class QuizRunner extends React.Component<{}, QuizState> {
     }
 
     private renderIcon(answer: QuizAnswer) {
-        if(typeof (this.state.selectedAnswer) === 'undefined' || this.state.showAnswers === false) {
+        if (typeof (this.state.selectedAnswer) === 'undefined' || this.state.showAnswers === false) {
             return;
         }
 
-        if(answer.isCorrect) {
+        if (answer.isCorrect) {
             return <List.Icon name='check' color='green' />;
         }
 
@@ -114,7 +116,10 @@ export default class QuizRunner extends React.Component<{}, QuizState> {
                 <Divider />
                 <Header as='h4'>{typeof (this.state.quiz) !== 'undefined' && this.renderCurrentQuestion()}</Header>
                 {typeof (this.state.quiz) !== 'undefined' && this.renderQuiz()}
-                {typeof (this.state.quiz) !== 'undefined' && <Progress value={this.state.questionIndex+1} total={this.state.questionsTotal} progress='ratio' color='blue' />}
+                {typeof (this.state.quiz) !== 'undefined' && <Progress value={this.state.questionIndex + 1} total={this.state.questionsTotal} progress='ratio' color='blue' />}
+                {this.state.isLoading == true && <Dimmer active>
+                    <Loader indeterminate>Loading quiz...</Loader>
+                </Dimmer>}
             </Segment>
         </Container>;
     }
@@ -128,7 +133,8 @@ type QuizState = {
     correctAnswers: number,
     wrongAnswers: number,
     showAnswers: boolean,
-    questionsTotal: number
+    questionsTotal: number,
+    isLoading: boolean
 }
 
 type QuizData = {
