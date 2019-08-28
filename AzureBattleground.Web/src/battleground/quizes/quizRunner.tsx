@@ -51,16 +51,7 @@ export default class QuizRunner extends React.Component<{}, QuizState> {
             shouldStopClock: true
         });
 
-        if (this.state.questionIndex + 1 == this.state.questionsTotal) {
-            return;
-        }
-
-        setTimeout(() => this.setState({
-            selectedAnswer: undefined,
-            showAnswers: false,
-            questionIndex: this.state.questionIndex + 1,
-            shouldStopClock: false
-        }), 3000);
+        this.proceedToNextQuestion();
     }
 
     private renderQuiz() {
@@ -104,6 +95,14 @@ export default class QuizRunner extends React.Component<{}, QuizState> {
         this.setState({
             showAnswers: true
         });
+
+        this.proceedToNextQuestion();
+    }
+
+    private proceedToNextQuestion() {
+        if (this.state.questionIndex + 1 == this.state.questionsTotal) {
+            return;
+        }
 
         setTimeout(() => this.setState({
             selectedAnswer: undefined,
