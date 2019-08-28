@@ -2,54 +2,140 @@
     "questions": [
         {
             "id": 1,
-            "text": "Do you like it?",
+            "text": "Which operating system is not supported by Azure?",
             "kind": "single",
+            "timeInSeconds": 30,
             "answers": [
                 {
                     "id": 1,
-                    "text": "Yes",
-                    "isCorrect": true
+                    "text": "Linux",
+                    "isCorrect": false
                 },
                 {
                     "id": 2,
-                    "text": "No",
+                    "text": "Red Hat",
                     "isCorrect": false
                 },
                 {
                     "id": 3,
-                    "text": "So-so",
+                    "text": "Windows",
                     "isCorrect": false
                 },
                 {
                     "id": 4,
-                    "text": "It's horrible!",
-                    "isCorrect": false
+                    "text": "macOS",
+                    "isCorrect": true
                 }
             ]
         },
         {
             "id": 2,
-            "text": "The best cloud provider is...",
+            "text": "Is it possible to use RDP with Linux machines?",
             "kind": "single",
+            "timeInSeconds": 30,
             "answers": [
                 {
                     "id": 1,
-                    "text": "Azure",
-                    "isCorrect": true
-                },
-                {
-                    "id": 2,
-                    "text": "AWS",
+                    "text": "No, it's not possible",
                     "isCorrect": false
                 },
                 {
+                    "id": 2,
+                    "text": "It's impossible by default, but you can install additional packages to enable RDP",
+                    "isCorrect": true
+                },
+                {
                     "id": 3,
-                    "text": "Google",
+                    "text": "Yes, it's always possible",
                     "isCorrect": false
                 },
                 {
                     "id": 4,
-                    "text": "My own DC",
+                    "text": "You can't use RDP in Azure Virtual Machines",
+                    "isCorrect": false
+                }
+            ]
+        },
+        {
+            "id": 4,
+            "text": "Which port is enabled by default on Azure machines?",
+            "kind": "single",
+            "timeInSeconds": 30,
+            "answers": [
+                {
+                    "id": 1,
+                    "text": "22",
+                    "isCorrect": false
+                },
+                {
+                    "id": 2,
+                    "text": "80",
+                    "isCorrect": false
+                },
+                {
+                    "id": 3,
+                    "text": "3389",
+                    "isCorrect": false
+                },
+                {
+                    "id": 4,
+                    "text": "None of the answers is correct",
+                    "isCorrect": true
+                }
+            ]
+        },
+        {
+            "id": 4,
+            "text": "How is public IP address attached to Azure VM?",
+            "kind": "single",
+            "timeInSeconds": 30,
+            "answers": [
+                {
+                    "id": 1,
+                    "text": "It's one of the VM features",
+                    "isCorrect": false
+                },
+                {
+                    "id": 2,
+                    "text": "You can't attach public IP address to an Azure VM",
+                    "isCorrect": false
+                },
+                {
+                    "id": 3,
+                    "text": "Via separate Azure resource",
+                    "isCorrect": true
+                },
+                {
+                    "id": 4,
+                    "text": "It's dynamically generated based on VM's private IP address",
+                    "isCorrect": false
+                }
+            ]
+        },
+        {
+            "id": 5,
+            "text": "How you manage network access of a virtual machine in Azure",
+            "kind": "single",
+            "timeInSeconds": 30,
+            "answers": [
+                {
+                    "id": 1,
+                    "text": "Using outbound / inbound network rules",
+                    "isCorrect": true
+                },
+                {
+                    "id": 2,
+                    "text": "Using RDP and setting the rules by hand",
+                    "isCorrect": false
+                },
+                {
+                    "id": 3,
+                    "text": "Network access is set during its deployment and cannot be changed",
+                    "isCorrect": false
+                },
+                {
+                    "id": 4,
+                    "text": "By sending support tickets explaining the desired VM configuration",
                     "isCorrect": false
                 }
             ]

@@ -145,7 +145,8 @@ type QuizQuestion = {
     id: Number,
     text: string,
     kind: 'single|multiple',
-    answers: QuizAnswer[]
+    answers: QuizAnswer[],
+    timeInSeconds: number
 }
 
 type QuizAnswer = {
