@@ -2,7 +2,7 @@ import React from "react";
 import AppServicesExercises from '../../../db/exercises/compute/appServices';
 import ExercisesBase from "../exercisesBase";
 
-export default class VirtualMachines extends React.Component<{}, {}> {
+export default class AppServices extends React.Component<{}, {}> {
     render() {
         return <ExercisesBase 
                     exercises={AppServicesExercises.exercises} 
