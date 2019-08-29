@@ -16,6 +16,7 @@ import Aks from './exercises/compute/aks';
 import Aci from './exercises/compute/aci';
 import AzureFunctions from './exercises/compute/azureFunctions';
 import Batch from './exercises/compute/batch';
+import ErrorBoundary from './errorBoundary';
 
 export default class App {
     init() {
@@ -23,26 +24,28 @@ export default class App {
             <Router>
                 <MainMenu />
                 <Container fluid className='main-container'>
-                    <Switch>
-                        <Route path="/" exact component={Home} />
-                        <Route path="/exercises/compute/virtual-machines" exact component={VirtualMachines} />
-                        <Route path="/exercises/compute/app-services" exact component={AppServices} />
-                        <Route path="/exercises/compute/service-fabric" exact component={ServiceFabric} />
-                        <Route path="/exercises/compute/aks" exact component={Aks} />
-                        <Route path="/exercises/compute/aci" exact component={Aci} />
-                        <Route path="/exercises/compute/azure-functions" exact component={AzureFunctions} />
-                        <Route path="/exercises/compute/batch" exact component={Batch} />
-                        <Route path="/exercises/compute/virtual-machines/:id" component={Exercise} />
-                        <Route path="/exercises/compute/app-services/:id" component={Exercise} />
-                        <Route path="/exercises/compute/service-fabric/:id" component={Exercise} />
-                        <Route path="/exercises/compute/aks/:id" component={Exercise} />
-                        <Route path="/exercises/compute/aci/:id" component={Exercise} />
-                        <Route path="/exercises/compute/azure-functions/:id" component={Exercise} />
-                        <Route path="/exercises/compute/batch/:id" component={Exercise} />
-                        <Route path="/battleground/quizes" exact component={Quizes} />
-                        <Route path="/battleground/quizes/:id" component={QuizRunner} />
-                        <Route component={NotFound} />
-                    </Switch>
+                    <ErrorBoundary>
+                        <Switch>
+                            <Route path="/" exact component={Home} />
+                            <Route path="/exercises/compute/virtual-machines" exact component={VirtualMachines} />
+                            <Route path="/exercises/compute/app-services" exact component={AppServices} />
+                            <Route path="/exercises/compute/service-fabric" exact component={ServiceFabric} />
+                            <Route path="/exercises/compute/aks" exact component={Aks} />
+                            <Route path="/exercises/compute/aci" exact component={Aci} />
+                            <Route path="/exercises/compute/azure-functions" exact component={AzureFunctions} />
+                            <Route path="/exercises/compute/batch" exact component={Batch} />
+                            <Route path="/exercises/compute/virtual-machines/:id" component={Exercise} />
+                            <Route path="/exercises/compute/app-services/:id" component={Exercise} />
+                            <Route path="/exercises/compute/service-fabric/:id" component={Exercise} />
+                            <Route path="/exercises/compute/aks/:id" component={Exercise} />
+                            <Route path="/exercises/compute/aci/:id" component={Exercise} />
+                            <Route path="/exercises/compute/azure-functions/:id" component={Exercise} />
+                            <Route path="/exercises/compute/batch/:id" component={Exercise} />
+                            <Route path="/battleground/quizes" exact component={Quizes} />
+                            <Route path="/battleground/quizes/:id" component={QuizRunner} />
+                            <Route component={NotFound} />
+                        </Switch>
+                    </ErrorBoundary>
                 </Container>
                 <Footer />
             </Router>,
