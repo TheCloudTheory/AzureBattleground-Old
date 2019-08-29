@@ -6,6 +6,7 @@ import MainMenu from './mainMenu';
 import { Container } from 'semantic-ui-react';
 import Home from './home/home';
 import VirtualMachines from './exercises/compute/virtualMachines';
+import AppServices from './exercises/compute/appServices';
 import Exercise from './exercises/exercise';
 import Quizes from './battleground/quizes/quizes';
 import NotFound from './notFound';
@@ -20,7 +21,9 @@ export default class App {
                     <Switch>
                         <Route path="/" exact component={Home} />
                         <Route path="/exercises/compute/virtual-machines" exact component={VirtualMachines} />
+                        <Route path="/exercises/compute/app-services" exact component={AppServices} />
                         <Route path="/exercises/compute/virtual-machines/:id" component={Exercise} />
+                        <Route path="/exercises/compute/app-services/:id" component={Exercise} />
                         <Route path="/battleground/quizes" exact component={Quizes} />
                         <Route path="/battleground/quizes/:id" component={QuizRunner} />
                         <Route component={NotFound} />

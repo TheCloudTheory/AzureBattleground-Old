@@ -16,6 +16,16 @@ export default class ExercisesBase extends React.Component<ExercisesBaseProps> {
             items.push(this.renderListElement(value));
         });
 
+        if (items.length === 0) {
+            return <Header as='h3' icon textAlign='center'>
+                <Icon name='frown' circular />
+                <Header.Content>No exercises</Header.Content>
+                <Header.Subheader>
+                    It seems we don't have any exercise for this category. You can help us fill it with incredible content on GitHub.
+            </Header.Subheader>
+            </Header>;
+        }
+
         return <Item.Group divided>
             {items}
         </Item.Group>;
