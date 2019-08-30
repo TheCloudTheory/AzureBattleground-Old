@@ -17,6 +17,8 @@ import Aci from './exercises/compute/aci';
 import AzureFunctions from './exercises/compute/azureFunctions';
 import Batch from './exercises/compute/batch';
 import ErrorBoundary from './errorBoundary';
+import HallOfFame from './battleground/hallOfFame';
+import Ranking from './battleground/ranking';
 
 export default class App {
     init() {
@@ -43,6 +45,8 @@ export default class App {
                             <Route path="/exercises/compute/batch/:id" component={Exercise} />
                             <Route path="/battleground/quizes" exact component={Quizes} />
                             <Route path="/battleground/quizes/:id" component={QuizRunner} />
+                            <Route path="/battleground/hall-of-fame" exact component={HallOfFame} />
+                            <Route path="/battleground/ranking" exact component={Ranking} />
                             <Route component={NotFound} />
                         </Switch>
                     </ErrorBoundary>
