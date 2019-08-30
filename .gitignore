@@ -2,3 +2,6 @@ AzureBattleground.Web/node_modules/
 AzureBattleground.Web/dist/
 AzureBattleground.Web/build/
 AzureBattleground.Web/.tscache/
+
+obj/
+bin/
