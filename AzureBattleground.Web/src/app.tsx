@@ -20,6 +20,7 @@ import ErrorBoundary from './errorBoundary';
 import HallOfFame from './battleground/hallOfFame';
 import Ranking from './battleground/ranking';
 import PrivacyPolicy from './privacyPolicy';
+import TermsAndConditions from './termsAndConditions';
 
 export default class App {
     init() {
@@ -49,6 +50,7 @@ export default class App {
                             <Route path="/battleground/hall-of-fame" exact component={HallOfFame} />
                             <Route path="/battleground/ranking" exact component={Ranking} />
                             <Route path="/privacy-policy" exact component={PrivacyPolicy} />
+                            <Route path="/terms-and-conditions" exact component={TermsAndConditions} />
                             <Route component={NotFound} />
                         </Switch>
                     </ErrorBoundary>
