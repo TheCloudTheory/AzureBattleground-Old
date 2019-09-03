@@ -19,6 +19,7 @@ import Batch from './exercises/compute/batch';
 import ErrorBoundary from './errorBoundary';
 import HallOfFame from './battleground/hallOfFame';
 import Ranking from './battleground/ranking';
+import PrivacyPolicy from './privacyPolicy';
 
 export default class App {
     init() {
@@ -47,6 +48,7 @@ export default class App {
                             <Route path="/battleground/quizes/:id" component={QuizRunner} />
                             <Route path="/battleground/hall-of-fame" exact component={HallOfFame} />
                             <Route path="/battleground/ranking" exact component={Ranking} />
+                            <Route path="/privacy-policy" exact component={PrivacyPolicy} />
                             <Route component={NotFound} />
                         </Switch>
                     </ErrorBoundary>
