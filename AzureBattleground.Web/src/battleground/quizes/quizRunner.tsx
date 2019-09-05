@@ -12,6 +12,7 @@ export default class QuizRunner extends React.Component<{}, QuizState> {
 
         this.state = {
             quiz: undefined,
+            answers: [],
             metadata: Store.getKey('quiz'),
             questionIndex: 0,
             correctAnswers: 0,
@@ -26,6 +27,7 @@ export default class QuizRunner extends React.Component<{}, QuizState> {
         Axios.get<QuizData>(`/db/quizes/data/${this.state.metadata.id}.json`).then(res => {
             this.setState({
                 quiz: res.data,
+                answers: this.shuffle(res.data.questions[0].answers),
                 questionsTotal: res.data.questions.length,
                 isLoading: false
             });
@@ -63,8 +65,7 @@ export default class QuizRunner extends React.Component<{}, QuizState> {
 
     private renderAnswers() {
         let answers = [];
-        let currentQuestion = this.state.quiz.questions[this.state.questionIndex];
-        currentQuestion.answers.forEach((value, index) => {
+        this.state.answers.forEach((value, index) => {
             answers.push(<List.Item key={index}>
                 {this.renderIcon(value)}
                 <List.Content>
@@ -74,6 +75,22 @@ export default class QuizRunner extends React.Component<{}, QuizState> {
         });
 
         return answers;
+    }
+
+    private shuffle(array: Array<any>) {
+        let currentIndex = array.length;
+        let temporaryValue, randomIndex
+
+        while (0 !== currentIndex) {
+            randomIndex = Math.floor(Math.random() * currentIndex);
+            currentIndex -= 1;
+
+            temporaryValue = array[currentIndex];
+            array[currentIndex] = array[randomIndex];
+            array[randomIndex] = temporaryValue;
+        }
+
+        return array;
     }
 
     private renderIcon(answer: QuizAnswer) {
@@ -113,7 +130,8 @@ export default class QuizRunner extends React.Component<{}, QuizState> {
             selectedAnswer: undefined,
             showAnswers: false,
             questionIndex: this.state.questionIndex + 1,
-            shouldStopClock: false
+            shouldStopClock: false,
+            answers: this.shuffle(this.state.quiz.questions[this.state.questionIndex + 1].answers)
         }), 3000);
     }
 
@@ -170,6 +188,7 @@ export default class QuizRunner extends React.Component<{}, QuizState> {
 
 type QuizState = {
     quiz: QuizData,
+    answers: QuizAnswer[],
     metadata: IQuiz,
     questionIndex: number,
     selectedAnswer?: QuizAnswer,
