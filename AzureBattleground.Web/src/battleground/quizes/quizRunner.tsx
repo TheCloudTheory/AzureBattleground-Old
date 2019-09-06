@@ -11,7 +11,7 @@ export default class QuizRunner extends React.Component<{}, QuizState> {
         super(props);
 
         this.state = {
-            quiz: undefined,
+            questions: [],
             answers: [],
             metadata: Store.getKey('quiz'),
             questionIndex: 0,
@@ -25,9 +25,10 @@ export default class QuizRunner extends React.Component<{}, QuizState> {
         };
 
         Axios.get<QuizData>(`/db/quizes/data/${this.state.metadata.id}.json`).then(res => {
+            let questions = this.shuffle(res.data.questions);
             this.setState({
-                quiz: res.data,
-                answers: this.shuffle(res.data.questions[0].answers),
+                questions,
+                answers: this.shuffle(questions[0].answers),
                 questionsTotal: res.data.questions.length,
                 isLoading: false
             });
@@ -106,7 +107,7 @@ export default class QuizRunner extends React.Component<{}, QuizState> {
     }
 
     private renderCurrentQuestion() {
-        return `Question ${this.state.questionIndex + 1}: ${this.state.quiz.questions[this.state.questionIndex].text}`;
+        return `Question ${this.state.questionIndex + 1}: ${this.state.questions[this.state.questionIndex].text}`;
     }
 
     private clockEndedHandler() {
@@ -131,7 +132,7 @@ export default class QuizRunner extends React.Component<{}, QuizState> {
             showAnswers: false,
             questionIndex: this.state.questionIndex + 1,
             shouldStopClock: false,
-            answers: this.shuffle(this.state.quiz.questions[this.state.questionIndex + 1].answers)
+            answers: this.shuffle(this.state.questions[this.state.questionIndex + 1].answers)
         }), 3000);
     }
 
@@ -154,11 +155,11 @@ export default class QuizRunner extends React.Component<{}, QuizState> {
                     </Header.Content>
                 </Header>
                 <Divider />
-                <Header as='h4'>{typeof (this.state.quiz) !== 'undefined' && this.state.quizFinished == false && this.renderCurrentQuestion()}</Header>
-                {typeof (this.state.quiz) !== 'undefined' && this.state.quizFinished == false && this.renderQuiz()}
-                {typeof (this.state.quiz) !== 'undefined' && this.state.quizFinished == false &&
+                <Header as='h4'>{this.state.questions.length > 0 && this.state.quizFinished == false && this.renderCurrentQuestion()}</Header>
+                {this.state.questions.length > 0 && this.state.quizFinished == false && this.renderQuiz()}
+                {this.state.questions.length > 0 && this.state.quizFinished == false &&
                     <QuizClock key={this.state.questionIndex}
-                        questionTime={this.state.quiz.questions[this.state.questionIndex].timeInSeconds}
+                        questionTime={this.state.questions[this.state.questionIndex].timeInSeconds}
                         shouldStop={this.state.shouldStopClock}
                         clockCallback={this.clockEndedHandler} />}
                 {this.state.isLoading == true && <Dimmer active>
@@ -187,7 +188,7 @@ export default class QuizRunner extends React.Component<{}, QuizState> {
 }
 
 type QuizState = {
-    quiz: QuizData,
+    questions: QuizQuestion[],
     answers: QuizAnswer[],
     metadata: IQuiz,
     questionIndex: number,
