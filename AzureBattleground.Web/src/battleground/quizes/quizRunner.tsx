@@ -21,7 +21,8 @@ export default class QuizRunner extends React.Component<{}, QuizState> {
             questionsTotal: 0,
             isLoading: true,
             shouldStopClock: false,
-            quizFinished: false
+            quizFinished: false,
+            isAnswerSelected: false
         };
 
         Axios.get<QuizData>(`/db/quizes/data/${this.state.metadata.id}.json`).then(res => {
@@ -40,6 +41,10 @@ export default class QuizRunner extends React.Component<{}, QuizState> {
     }
 
     private handleAnswerClick(answer: QuizAnswer) {
+        if(this.state.isAnswerSelected === true) {
+            return;
+        } 
+
         let correctAnswers = this.state.correctAnswers;
         let wrongAnswers = this.state.wrongAnswers;
         if (answer.isCorrect === true) {
@@ -53,7 +58,8 @@ export default class QuizRunner extends React.Component<{}, QuizState> {
             correctAnswers: correctAnswers,
             wrongAnswers: wrongAnswers,
             showAnswers: true,
-            shouldStopClock: true
+            shouldStopClock: true,
+            isAnswerSelected: true
         });
 
         this.proceedToNextQuestion();
@@ -148,7 +154,8 @@ export default class QuizRunner extends React.Component<{}, QuizState> {
             showAnswers: false,
             questionIndex: this.state.questionIndex + 1,
             shouldStopClock: false,
-            answers: this.shuffle(this.state.questions[this.state.questionIndex + 1].answers)
+            answers: this.shuffle(this.state.questions[this.state.questionIndex + 1].answers),
+            isAnswerSelected: false
         }), 3000);
     }
 
@@ -218,7 +225,8 @@ type QuizState = {
     questionsTotal: number,
     isLoading: boolean,
     shouldStopClock: boolean,
-    quizFinished: boolean
+    quizFinished: boolean,
+    isAnswerSelected: boolean
 }
 
 type QuizData = {
