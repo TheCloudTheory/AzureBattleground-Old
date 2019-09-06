@@ -83,10 +83,10 @@ export default class QuizRunner extends React.Component<{}, QuizState> {
     private renderAnswers() {
         let answers = [];
         this.state.answers.forEach((value, index) => {
-            answers.push(<List.Item key={index}>
+            answers.push(<List.Item key={index} onClick={this.handleAnswerClick.bind(null, value)}>
                 {this.renderIcon(value)}
                 <List.Content>
-                    <List.Header onClick={this.handleAnswerClick.bind(null, value)}>{value.text}</List.Header>
+                    <List.Header>{value.text}</List.Header>
                 </List.Content>
             </List.Item>);
         });
