@@ -2,7 +2,7 @@ import React from "react";
 import Axios from "axios";
 import { IQuiz } from "../interfaces/quiz";
 import Store from "../../store";
-import { Container, Breadcrumb, Segment, Header, List, Divider, Progress, Loader, Dimmer, Icon, Statistic } from "semantic-ui-react";
+import { Container, Breadcrumb, Segment, Header, List, Divider, Progress, Loader, Dimmer, Icon, Statistic, Button } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import QuizClock from "./quizClock";
 
@@ -36,6 +36,7 @@ export default class QuizRunner extends React.Component<{}, QuizState> {
 
         this.handleAnswerClick = this.handleAnswerClick.bind(this);
         this.clockEndedHandler = this.clockEndedHandler.bind(this);
+        this.resetQuiz = this.resetQuiz.bind(this);
     }
 
     private handleAnswerClick(answer: QuizAnswer) {
@@ -56,6 +57,21 @@ export default class QuizRunner extends React.Component<{}, QuizState> {
         });
 
         this.proceedToNextQuestion();
+    }
+
+    private resetQuiz() {
+        let questions = this.shuffle(this.state.questions);
+
+        this.setState({
+            questions,
+            answers: this.shuffle(questions[0].answers),
+            questionIndex: 0,
+            correctAnswers: 0,
+            wrongAnswers: 0,
+            quizFinished: false,
+            showAnswers: false,
+            shouldStopClock: false
+        });
     }
 
     private renderQuiz() {
@@ -80,7 +96,7 @@ export default class QuizRunner extends React.Component<{}, QuizState> {
 
     private shuffle(array: Array<any>) {
         let currentIndex = array.length;
-        let temporaryValue, randomIndex
+        let temporaryValue: any, randomIndex: number
 
         while (0 !== currentIndex) {
             randomIndex = Math.floor(Math.random() * currentIndex);
@@ -165,13 +181,14 @@ export default class QuizRunner extends React.Component<{}, QuizState> {
                 {this.state.isLoading == true && <Dimmer active>
                     <Loader indeterminate>Loading quiz...</Loader>
                 </Dimmer>}
-                {this.state.quizFinished && <div><Header as='h2' icon textAlign='center'>
-                    <Icon name='check' circular />
-                    <Header.Content>Congratulations!</Header.Content>
-                    <Header.Subheader>
-                        You have finished a quiz. Here are your results:
+                {this.state.quizFinished && <div style={{ textAlign: 'center' }}>
+                    <Header as='h2' icon textAlign='center'>
+                        <Icon name='check' circular />
+                        <Header.Content>Congratulations!</Header.Content>
+                        <Header.Subheader>
+                            You have finished a quiz. Here are your results:
                     </Header.Subheader>
-                </Header>
+                    </Header>
                     <Statistic.Group widths='two'>
                         <Statistic color='green'>
                             <Statistic.Value>{this.state.correctAnswers}</Statistic.Value>
@@ -181,7 +198,9 @@ export default class QuizRunner extends React.Component<{}, QuizState> {
                             <Statistic.Value>{this.state.wrongAnswers}</Statistic.Value>
                             <Statistic.Label>wrong answers</Statistic.Label>
                         </Statistic>
-                    </Statistic.Group></div>}
+                    </Statistic.Group>
+                    <Button primary size='huge' onClick={this.resetQuiz}>Try again!</Button>
+                </div>}
             </Segment>
         </Container>;
     }
