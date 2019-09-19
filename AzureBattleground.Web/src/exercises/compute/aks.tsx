@@ -6,6 +6,7 @@ export default class Aks extends React.Component<{}, {}> {
     render() {
         return <ExercisesBase 
                     exercises={AksExercises.exercises} 
+                    routeBase={'compute/aks'}
                     title='Azure Kubernetes Service' 
                     subheader='Learn about different features of Azure Kubernetes Service in Azure' 
                     icon='desktop' />

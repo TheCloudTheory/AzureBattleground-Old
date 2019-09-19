@@ -32,7 +32,7 @@ export default class LevelLabel extends React.Component<LevelLabelProps> {
                 break;
         }
 
-        return <Label color={label.color} horizontal style={{ float: 'left' }}>
+        return <Label color={label.color} horizontal style={{ float: 'left', textOrientation: 'upright', writingMode: 'vertical-rl' }}>
             {label.text}
         </Label>;
     }

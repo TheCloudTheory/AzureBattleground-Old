@@ -6,6 +6,7 @@ export default class Aci extends React.Component<{}, {}> {
     render() {
         return <ExercisesBase 
                     exercises={AciExercises.exercises} 
+                    routeBase={'compute/aci'}
                     title='Azure Containers Instances' 
                     subheader='Learn about different features of Azure Container Instances in Azure' 
                     icon='desktop' />

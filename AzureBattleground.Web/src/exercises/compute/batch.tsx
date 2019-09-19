@@ -6,6 +6,7 @@ export default class Batch extends React.Component<{}, {}> {
     render() {
         return <ExercisesBase 
                     exercises={BatchExercises.exercises} 
+                    routeBase={'compute/batch'}
                     title='Azure Batch' 
                     subheader='Learn about different features of Azure Batch in Azure' 
                     icon='desktop' />

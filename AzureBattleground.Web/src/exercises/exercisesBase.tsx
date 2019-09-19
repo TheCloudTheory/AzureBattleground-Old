@@ -32,6 +32,8 @@ export default class ExercisesBase extends React.Component<ExercisesBaseProps> {
     }
 
     private renderListElement(exercise: IExercise) {
+        let routeParts = exercise.path.split('/');
+
         return <Item key={exercise.id.toString()}>
             <LevelLabel level={exercise.level} />
             <Item.Content>
@@ -42,7 +44,7 @@ export default class ExercisesBase extends React.Component<ExercisesBaseProps> {
                 <Item.Description>{exercise.description}</Item.Description>
                 <Item.Extra>
                     <Button primary floated='right' onClick={() => Store.setKey('exercise', exercise)}>
-                        <Link to={'/exercises/compute/virtual-machines/' + this.getExerciseBeatifulIdentifier(exercise.name)} style={{ color: 'white' }}>Get started</Link>
+                        <Link to={`/exercises/${this.props.routeBase}/${this.getExerciseBeatifulIdentifier(exercise.name)}`} style={{ color: 'white' }}>Get started</Link>
                     </Button>
                     {this.renderLabels(exercise.tags)}
                 </Item.Extra>
@@ -82,6 +84,7 @@ export default class ExercisesBase extends React.Component<ExercisesBaseProps> {
 
 type ExercisesBaseProps = {
     exercises: IExercise[],
+    routeBase: string,
     title: string,
     subheader: string,
     icon: SemanticICONS

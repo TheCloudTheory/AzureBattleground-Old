@@ -22,6 +22,7 @@ import Ranking from './battleground/ranking';
 import PrivacyPolicy from './privacyPolicy';
 import TermsAndConditions from './termsAndConditions';
 import About from './about/about';
+import AzureDevOps from './exercises/devops/azuredevops';
 
 export default class App {
     init() {
@@ -46,6 +47,8 @@ export default class App {
                             <Route path="/exercises/compute/aci/:id" component={Exercise} />
                             <Route path="/exercises/compute/azure-functions/:id" component={Exercise} />
                             <Route path="/exercises/compute/batch/:id" component={Exercise} />
+                            <Route path="/exercises/devops/azure-devops" exact component={AzureDevOps} />
+                            <Route path="/exercises/devops/azure-devops/:id" exact component={Exercise} />
                             <Route path="/battleground/quizes" exact component={Quizes} />
                             <Route path="/battleground/quizes/:id" component={QuizRunner} />
                             <Route path="/battleground/hall-of-fame" exact component={HallOfFame} />

@@ -40,6 +40,13 @@ export default class MainMenu extends React.Component {
                                 <Dropdown.Item as='a' href='/exercises/storage/postgresql'>Azure Database for PostgreSQL</Dropdown.Item>
                             </Dropdown.Menu>
                         </Dropdown.Item>
+                        <Dropdown.Item>
+                            <i className='dropdown icon' />
+                            <span className='text'>DevOps</span>
+                            <Dropdown.Menu className='mainMenu-exercisesMenu'>
+                                <Dropdown.Item as='a' href='/exercises/devops/azure-devops'>Azure DevOps</Dropdown.Item>
+                            </Dropdown.Menu>
+                        </Dropdown.Item>
                     </Dropdown.Menu>
                 </Dropdown>
 

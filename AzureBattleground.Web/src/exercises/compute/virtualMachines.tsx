@@ -6,6 +6,7 @@ export default class VirtualMachines extends React.Component<{}, {}> {
     render() {
         return <ExercisesBase 
                     exercises={VirtualMachinesExercises.exercises} 
+                    routeBase={'compute/virtual-machines'}
                     title='Virtual Machines' 
                     subheader='Learn about different features of VMs in Azure' 
                     icon='desktop' />
