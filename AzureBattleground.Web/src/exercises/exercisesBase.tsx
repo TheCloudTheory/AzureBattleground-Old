@@ -70,7 +70,7 @@ export default class ExercisesBase extends React.Component<ExercisesBaseProps> {
 
     render() {
         return <Container className='page-mainContainer'>
-            <Header as='h2'>
+            <Header as='h1'>
                 <Icon name={this.props.icon} />
                 <Header.Content>
                     {this.props.title}

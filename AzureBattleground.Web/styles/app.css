@@ -69,3 +69,8 @@
 .page-mainContainer {
     padding: 2em 0;
 }
+
+pre {
+    background-color: ghostwhite;
+    padding: 1em;
+}

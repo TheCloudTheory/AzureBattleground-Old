@@ -24,7 +24,7 @@ export default class Exercise extends React.Component<{}, ExerciseType> {
 
     render() {
         return <Container className='page-mainContainer'>
-            <Breadcrumb>
+            <Breadcrumb size='small'>
                 <Breadcrumb.Section><Link to='/'>Home</Link></Breadcrumb.Section>
                 <Breadcrumb.Divider />
                 <Breadcrumb.Section><Link to='/exercises'>Exercises</Link></Breadcrumb.Section>
@@ -35,13 +35,13 @@ export default class Exercise extends React.Component<{}, ExerciseType> {
                 <Breadcrumb.Divider />
                 <Breadcrumb.Section active>{this.state.metadata.name}</Breadcrumb.Section>
             </Breadcrumb>
-            <Segment>
-                <Header as='h2'>
-                    <Header.Content>
-                        {this.state.metadata.name}
-                        <Header.Subheader>{this.state.metadata.description}</Header.Subheader>
-                    </Header.Content>
-                </Header>
+            <Header as='h1' attached='top'>
+                <Header.Content>
+                    {this.state.metadata.name}
+                    <Header.Subheader>{this.state.metadata.description}</Header.Subheader>
+                </Header.Content>
+            </Header>
+            <Segment attached>
                 <ReactMarkdown source={this.state.exercise} />
             </Segment>
         </Container>;
