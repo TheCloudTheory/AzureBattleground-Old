@@ -32,8 +32,6 @@ export default class ExercisesBase extends React.Component<ExercisesBaseProps> {
     }
 
     private renderListElement(exercise: IExercise) {
-        let routeParts = exercise.path.split('/');
-
         return <Item key={exercise.id.toString()}>
             <LevelLabel level={exercise.level} />
             <Item.Content>

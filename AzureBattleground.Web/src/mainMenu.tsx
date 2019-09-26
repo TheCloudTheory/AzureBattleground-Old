@@ -1,6 +1,5 @@
 import React from "react";
 import { Container, Dropdown, Menu, Icon } from "semantic-ui-react";
-import { Link } from "react-router-dom";
 
 export default class MainMenu extends React.Component {
     render() {

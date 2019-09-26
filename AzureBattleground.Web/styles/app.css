@@ -74,3 +74,7 @@ pre {
     background-color: ghostwhite;
     padding: 1em;
 }
+
+.ui.list .list>.item>.content>.list, .ui.list>.item>.content>.list {
+    margin-left: 1em;
+}

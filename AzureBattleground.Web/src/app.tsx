@@ -23,6 +23,7 @@ import PrivacyPolicy from './privacyPolicy';
 import TermsAndConditions from './termsAndConditions';
 import About from './about/about';
 import AzureDevOps from './exercises/devops/azuredevops';
+import Exercises from './exercises/exercises';
 
 export default class App {
     init() {
@@ -33,20 +34,23 @@ export default class App {
                     <ErrorBoundary>
                         <Switch>
                             <Route path="/" exact component={Home} />
-                            <Route path="/exercises/compute/virtual-machines" exact component={VirtualMachines} />
-                            <Route path="/exercises/compute/app-services" exact component={AppServices} />
-                            <Route path="/exercises/compute/service-fabric" exact component={ServiceFabric} />
-                            <Route path="/exercises/compute/aks" exact component={Aks} />
-                            <Route path="/exercises/compute/aci" exact component={Aci} />
-                            <Route path="/exercises/compute/azure-functions" exact component={AzureFunctions} />
-                            <Route path="/exercises/compute/batch" exact component={Batch} />
-                            <Route path="/exercises/compute/virtual-machines/:id" component={Exercise} />
-                            <Route path="/exercises/compute/app-services/:id" component={Exercise} />
-                            <Route path="/exercises/compute/service-fabric/:id" component={Exercise} />
-                            <Route path="/exercises/compute/aks/:id" component={Exercise} />
-                            <Route path="/exercises/compute/aci/:id" component={Exercise} />
-                            <Route path="/exercises/compute/azure-functions/:id" component={Exercise} />
-                            <Route path="/exercises/compute/batch/:id" component={Exercise} />
+                            <Route path="/exercises" exact component={Exercises} />
+                            <Route path="exercises/compute" exact component={Home}>
+                                <Route path="exercises/compute/virtual-machines" exact component={VirtualMachines} />
+                                <Route path="app-services" exact component={AppServices} />
+                                <Route path="service-fabric" exact component={ServiceFabric} />
+                                <Route path="aks" exact component={Aks} />
+                                <Route path="aci" exact component={Aci} />
+                                <Route path="azure-functions" exact component={AzureFunctions} />
+                                <Route path="batch" exact component={Batch} />
+                                <Route path="virtual-machines/:id" component={Exercise} />
+                                <Route path="app-services/:id" component={Exercise} />
+                                <Route path="service-fabric/:id" component={Exercise} />
+                                <Route path="aks/:id" component={Exercise} />
+                                <Route path="aci/:id" component={Exercise} />
+                                <Route path="azure-functions/:id" component={Exercise} />
+                                <Route path="batch/:id" component={Exercise} />
+                            </Route>
                             <Route path="/exercises/devops/azure-devops" exact component={AzureDevOps} />
                             <Route path="/exercises/devops/azure-devops/:id" exact component={Exercise} />
                             <Route path="/battleground/quizes" exact component={Quizes} />
