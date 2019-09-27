@@ -35,22 +35,20 @@ export default class App {
                         <Switch>
                             <Route path="/" exact component={Home} />
                             <Route path="/exercises" exact component={Exercises} />
-                            <Route path="exercises/compute" exact component={Home}>
-                                <Route path="exercises/compute/virtual-machines" exact component={VirtualMachines} />
-                                <Route path="app-services" exact component={AppServices} />
-                                <Route path="service-fabric" exact component={ServiceFabric} />
-                                <Route path="aks" exact component={Aks} />
-                                <Route path="aci" exact component={Aci} />
-                                <Route path="azure-functions" exact component={AzureFunctions} />
-                                <Route path="batch" exact component={Batch} />
-                                <Route path="virtual-machines/:id" component={Exercise} />
-                                <Route path="app-services/:id" component={Exercise} />
-                                <Route path="service-fabric/:id" component={Exercise} />
-                                <Route path="aks/:id" component={Exercise} />
-                                <Route path="aci/:id" component={Exercise} />
-                                <Route path="azure-functions/:id" component={Exercise} />
-                                <Route path="batch/:id" component={Exercise} />
-                            </Route>
+                            <Route path="exercises/compute/virtual-machines" exact component={VirtualMachines} />
+                            <Route path="app-services" exact component={AppServices} />
+                            <Route path="service-fabric" exact component={ServiceFabric} />
+                            <Route path="aks" exact component={Aks} />
+                            <Route path="aci" exact component={Aci} />
+                            <Route path="azure-functions" exact component={AzureFunctions} />
+                            <Route path="batch" exact component={Batch} />
+                            <Route path="virtual-machines/:id" component={Exercise} />
+                            <Route path="app-services/:id" component={Exercise} />
+                            <Route path="service-fabric/:id" component={Exercise} />
+                            <Route path="aks/:id" component={Exercise} />
+                            <Route path="aci/:id" component={Exercise} />
+                            <Route path="azure-functions/:id" component={Exercise} />
+                            <Route path="batch/:id" component={Exercise} />
                             <Route path="/exercises/devops/azure-devops" exact component={AzureDevOps} />
                             <Route path="/exercises/devops/azure-devops/:id" exact component={Exercise} />
                             <Route path="/battleground/quizes" exact component={Quizes} />

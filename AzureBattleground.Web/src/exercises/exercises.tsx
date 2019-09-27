@@ -3,6 +3,7 @@ import { Container, Header, Segment, Breadcrumb, List } from "semantic-ui-react"
 import { Link } from "react-router-dom";
 import AzureDevOpsExercises from '../../db/exercises/devops/azureDevOps';
 import { IExercise } from "./interfaces/exercise";
+import Store from "../store";
 
 export default class Exercises extends React.Component {
     private renderExercises() {
@@ -15,7 +16,7 @@ export default class Exercises extends React.Component {
                             <List.Content>
                                 <List.Header as='a' href='/exercises/devops/azure-devops'>Azure DevOps</List.Header>
                                 <List.List>
-                                    {this.renderExercisesFromFile(AzureDevOpsExercises.exercises)}
+                                    {this.renderExercisesFromFile(AzureDevOpsExercises.exercises, AzureDevOpsExercises.category, AzureDevOpsExercises.module)}
                                 </List.List>
                             </List.Content>
                         </List.Item>
@@ -25,12 +26,12 @@ export default class Exercises extends React.Component {
         </List>
     }
 
-    private renderExercisesFromFile(data: IExercise[]) {
+    private renderExercisesFromFile(data: IExercise[], category: string, module: string) {
         let exercises = [];
         data.forEach((exercise, index) => {
-            exercises.push(<List.Item key={index}>
+            exercises.push(<List.Item key={index} onClick={() => Store.setKey('exercise', exercise)}>
                 <List.Content>
-                    <List.Header as='a' href={'/exercises/devops/' + this.getExerciseBeatifulIdentifier(exercise.name)}>{exercise.name}</List.Header>
+                    <List.Header as='a' href={`/exercises/${category}/${module}/${this.getExerciseBeatifulIdentifier(exercise.name)}`}>{exercise.name}</List.Header>
                     <List.Description>{exercise.description}</List.Description>
                 </List.Content>
             </List.Item>);

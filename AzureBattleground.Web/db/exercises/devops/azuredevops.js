@@ -1,4 +1,6 @@
 const AzureDevopsExercises = {
+    "category": "devops",
+    "module": "azure-devops",
     "exercises": [
         {
             "id": 1,

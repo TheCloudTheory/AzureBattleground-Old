@@ -14,6 +14,9 @@ export default class MainMenu extends React.Component {
 
                 <Dropdown item simple text='Exercises'>
                     <Dropdown.Menu>
+                        <Dropdown.Item as='a' href='/exercises'>
+                            All exercises
+                        </Dropdown.Item>
                         <Dropdown.Item>
                             <i className='dropdown icon' />
                             <span className='text'>Compute</span>

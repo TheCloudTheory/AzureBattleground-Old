@@ -2,7 +2,7 @@ import React from "react";
 import Axios from "axios";
 import { IQuiz } from "../interfaces/quiz";
 import Store from "../../store";
-import { Container, Breadcrumb, Segment, Header, List, Divider, Progress, Loader, Dimmer, Icon, Statistic, Button } from "semantic-ui-react";
+import { Container, Breadcrumb, Segment, Header, List, Divider, Loader, Dimmer, Icon, Statistic, Button } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import QuizClock from "./quizClock";
 
